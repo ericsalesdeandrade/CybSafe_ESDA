@@ -6,7 +6,7 @@ app = Flask(__name__)  # create an app instance
 
 
 @app.route("/")
-def hello():
+def start_check():
     """
     Endpoint to check if the API is working
     :return:
