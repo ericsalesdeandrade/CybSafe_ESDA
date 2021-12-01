@@ -8,8 +8,8 @@ from the Pokemon API - https://pokeapi.co/
 The Repo contains
 1. Script to scrape the Pokemon API
 2. Script to create a Postgres Database, Table
-3. Flask Application Wrapper around above 2 scripts
-4. Docker Compose File to Host Web App and Database
+3. Flask Application Wrapper to get, store and retrieve data from DB
+4. Docker (Compose) to Run Web App and Database
 
 ## How To Run
 ### Step 1
@@ -17,14 +17,14 @@ In the Root Directory run
 ```
 docker-compose up --build 
 ```
-This will start the web service (by building and image off the 
+This will start the web service (by building and image from the 
 Dockerfile) and the Postgres Database (by downloading the image
 from the Dockerhub Repo)
 
 ### Step 2
-Please check the Docker Logs for Unit Test. In a production 
-setting with CI/CD we would stop the deployment if any Unit Test
-Failed.
+Please check the Docker Logs for successful execution of the Unit Test. 
+In a production setting with CI/CD we would stop the deployment 
+if any Tests Failed.
 
 Once the docker compose successfully executes, paste the below 
 URL in your browser or API Client to run the API. 
@@ -47,7 +47,7 @@ This is a test endpoint that returns a JSON message
 ```
 By making a GET request to this endpoint, we create a `pokemon` 
 table with 4 columns - `pokemon_key` (uuid), `pokemon_id` 
-(int, based off the id from the API URL), `pokemon_name` (str) 
+(int, based on the id from the API URL), `pokemon_name` (str) 
 and `pokemon_url` (str).
 
 A successful API response is as below
@@ -99,14 +99,14 @@ A successful API response is as below
 
 ## API Functionality Limitations
 The following are limitations in the functionality of the API
-1. The API doesn't support data UPDATES
-2. The API only makes 1 call to the endpoint and can fetch 20
+1. The API doesn't support data UPDATES.
+2. The API only makes 1 call to the Poke endpoint and can fetch 20
 values in one execution.
-3. The API retrieves all values from the database when
+3. The API retrieves ALL values from the database when
 the `get_pokemon` endpoint is called.
 4. The other Pokemon attributes and description is not stored 
 and the setup uses just 1 Postgres table with 4 columns
-5. The API doesn't have any security and Postgres has standard 
+5. The API doesn't have any security and Postgres uses standard 
 default username and password. 
    
 ## What I would implement for production
@@ -115,8 +115,11 @@ default username and password.
 ALL API endpoints including connections to the Postgres DB.
 - Package the script as a python module hosted in PackageCloud
 or similar rather than just scripts. The CI/CD pipeline
-would download this as a package and install
+would download this as a package and install it.
+- Use Python Virtual Environment in the Web App Docker Container
+for full control on the environment.
 - Potentially rewrite the code to batch the SQL insert 
-statements instead of writing each SQL statement individually
+statements instead of writing each SQL statement to the DB individually
 which makes the process inefficient.
-- The detailed documentation and architecture diagrams.
+- Write detailed documentation and architecture diagrams.
+- Restructure the Repo for ease of use.
