@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "54320:5432"
+    restart: always
+  web:
+    build: .
+    command: bash -c "pytest ./tests/test_unit_get_pokemon.py && python app.py"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db

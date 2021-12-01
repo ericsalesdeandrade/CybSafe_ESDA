@@ -13,7 +13,9 @@ class DBAccess():
         """
         try:
             # Connect to database
-            self.connection = psycopg2.connect(host="127.0.0.1",
+            self.connection = psycopg2.connect(user="postgres",
+                                               password="postgres",
+                                               host="db",
                                                port="5432",
                                                database="postgres")
 
@@ -69,7 +71,7 @@ class DBAccess():
         Function to read file path and create SQL tables
         :return: None
         """
-        file_path = Path.cwd() / 'helpers' / 'create_tables.sql'
+        file_path = Path.cwd() / 'src' / 'helpers' / 'create_tables.sql'
         self.execute_sql_on_postgres(self.read_sql(str(file_path)))
 
     def close_db_connection(self) -> None:

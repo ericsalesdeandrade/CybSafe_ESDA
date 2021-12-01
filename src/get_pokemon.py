@@ -32,7 +32,7 @@ class Pokemon:
         Function to construct SQL query
         :param table_name: Name of table, str
         :param action: Desired Action - Insert or Update, str
-        :return:
+        :return: List of insert SQL Statements
         """
         self.sql_list = []
         if action == "insert":
