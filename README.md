@@ -99,19 +99,19 @@ A successful API response is as below
 
 ## API Functionality Limitations
 The following are limitations in the functionality of the API
-1. The API doesn't support data UPDATES.
+1. The API doesn't support data UPDATES. Need to add `UPDATE` functionality.
 2. The API only makes 1 call to the Poke endpoint and can fetch 20
 values in one execution.
 3. The API retrieves ALL values from the database when
-the `get_pokemon` endpoint is called.
-4. The other Pokemon attributes and description is not stored 
+the `get_pokemon` endpoint is called. Would be good to limit how many values are fetched. 
+4. The other Pokemon attributes and description is not stored
 and the setup uses just 1 Postgres table with 4 columns
 5. The API doesn't have any security and Postgres uses standard 
 default username and password. 
    
 ## What I would implement for production
-- Address the above limitations and extend API functionality.
-- Fully comprehensive Unit and Integration tests to test
+- Extend API functionality to address the above limitations.
+- Fully comprehensive Unit and Integration tests to test code functionality, exceptions and
 ALL API endpoints including connections to the Postgres DB and exceptions.
 - Package the script as a python module hosted in PackageCloud
 or similar rather than just scripts. The CI/CD pipeline
@@ -120,8 +120,8 @@ would download this as a package and install it.
 for full control on the environment.
 - Potentially rewrite the code to batch the SQL insert 
 statements instead of writing each SQL statement to the DB individually
-which makes the process inefficient.
+which makes the process inefficient (reduce the number of I/O).
 - Restructure the Repo for ease of use.
 - Store docker images in a cloud Image Registry and deploy on a server e.g. Kubernetes Pod.
-- Write more detailed documentation/README and architecture diagrams.
+- Write more detailed documentation/README and show architecture diagrams.
 
