@@ -112,7 +112,7 @@ default username and password.
 ## What I would implement for production
 - Address the above limitations and extend API functionality.
 - Fully comprehensive Unit and Integration tests to test
-ALL API endpoints including connections to the Postgres DB.
+ALL API endpoints including connections to the Postgres DB and exceptions.
 - Package the script as a python module hosted in PackageCloud
 or similar rather than just scripts. The CI/CD pipeline
 would download this as a package and install it.
@@ -121,5 +121,7 @@ for full control on the environment.
 - Potentially rewrite the code to batch the SQL insert 
 statements instead of writing each SQL statement to the DB individually
 which makes the process inefficient.
-- Write detailed documentation and architecture diagrams.
 - Restructure the Repo for ease of use.
+- Store docker images in a cloud Image Registry and deploy on a server e.g. Kubernetes Pod.
+- Write more detailed documentation/README and architecture diagrams.
+
